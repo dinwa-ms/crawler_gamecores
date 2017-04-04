@@ -12,13 +12,14 @@ class GcoreSpider(scrapy.Spider):
 			urls.append(url)
 			yield scrapy.Request(url=url, callback=self.parse)
 
+
 	def parse(self, response):
 		articles = response.xpath('//div[@class="showcase showcase-article"]')
 		articles.extract()
 
 		with open("gcore_result.csv","a+") as f:
 			writer = csv.writer(f, delimiter=",")
-			writer.writerow(["NO.", "TIME", "TITLE", "SUBTITLE"])
+			# writer.writerow(["NO.", "TIME", "TITLE", "SUBTITLE"])
 
 			for index, article in enumerate(articles):
 				time = article.xpath('div[@class="showcase_time"]/text()').extract()[1]
