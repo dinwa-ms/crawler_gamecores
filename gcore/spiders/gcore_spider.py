@@ -39,10 +39,10 @@ class GcoreSpider(scrapy.Spider):
 				print "Subtitle is: {}".format(subtitle.encode('utf-8').strip())
 				print "Published on {}".format(time.strip())
 				print "Like number is: {}".format(like[1].strip())
-				print "Comment is: {}".format(comment[2].strip())
+				print "Comment is: {}".format(comment[2].strip().split()[0])
 				print "---------------------------"
 				self.count += 1
-				writer.writerow([index, time.strip(), title.encode('utf-8').strip(), subtitle.encode('utf-8').strip(), like[1].strip(), comment[2].strip()])
+				writer.writerow([index, time.strip(), title.encode('utf-8').strip(), subtitle.encode('utf-8').strip(), like[1].strip(), comment[2].strip().split()[0]])
 
 		print "Total nunmber of artile: {}".format(self.count+1)
 
