@@ -32,13 +32,17 @@ class GcoreSpider(scrapy.Spider):
 				time = article.xpath('div[@class="showcase_time"]/text()').extract()[1]
 				title = article.xpath('div[@class="showcase_text"]/h4/a/text()').extract_first()
 				subtitle = article.xpath('div[@class="showcase_text"]/div[@class="showcase_info"]/text()').extract_first()
+				comment = article.xpath('div[@class="showcase_img"]/a/div[@class="showcase_meta"]/p[@class="showcase_meta_nums"]/span/text()').extract()
+				like = article.xpath('div[@class="showcase_img"]/a/div[@class="showcase_meta"]/p[@class="showcase_meta_nums"]/span/text()').extract()
 				print "-------- article {} -------".format(self.count)
 				print "Title is: {}".format(title.encode('utf-8').strip())
 				print "Subtitle is: {}".format(subtitle.encode('utf-8').strip())
 				print "Published on {}".format(time.strip())
+				print "Like number is: {}".format(like[1].strip())
+				print "Comment is: {}".format(comment[2].strip())
 				print "---------------------------"
 				self.count += 1
-				writer.writerow([index, time.strip(), title.encode('utf-8').strip(), subtitle.encode('utf-8').strip()])
+				writer.writerow([index, time.strip(), title.encode('utf-8').strip(), subtitle.encode('utf-8').strip(), like[1].strip(), comment[2].strip()])
 
 		print "Total nunmber of artile: {}".format(self.count+1)
 
