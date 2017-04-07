@@ -42,7 +42,7 @@ class GcoreSpider(scrapy.Spider):
 				print "Comment is: {}".format(comment[2].strip().split()[0])
 				print "---------------------------"
 				self.count += 1
-				writer.writerow([index, time.strip(), title.encode('utf-8').strip(), subtitle.encode('utf-8').strip(), like[1].strip(), comment[2].strip().split()[0]])
+				writer.writerow([index, time.strip(), title.encode('utf_8').strip(), subtitle.encode('utf_8').strip(), like[1].strip(), comment[2].strip().split()[0]])
 
 		print "Total nunmber of artile: {}".format(self.count+1)
 
